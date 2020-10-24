@@ -1,0 +1,25 @@
+{
+    "title": "",
+    "background": "",
+    "data": [
+        {
+            "url": "https://github.com",
+            "title": "github",
+            "icon": "",
+            "type": "link"
+        },
+        {
+            "title": "dir1",
+            "icon": "",
+            "type": "folder",
+            "items": [
+                {
+                    "url": "https://github.com/jacksitlab",
+                    "title": "My Github",
+                    "icon": "",
+                    "type": "link"
+                }
+            ]
+        }
+    ]
+}

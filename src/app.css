@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html ,body{
+    height: 100%;
+}
+
+/*@media screen and (min-width: 576px) {*/
+#app{
+    height: 100%;
+    overflow: hidden;
+}
