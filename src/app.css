@@ -11,3 +11,28 @@ html ,body{
     height: 100%;
     overflow: hidden;
 }
+li{list-style-type: none;}
+.container{
+    width: 1400px;
+    margin:50px auto;
+    background: #F00;
+}
+.speed-dial-container{
+    widows: 100%;
+
+}
+.speed-dial-container > .item{
+    width: 200px;
+    height: 200px;
+    margin:25px;
+    background: #CCC;
+    display: inline-block;
+}
+.navbar{
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    height: 50px;
+    background:#0F0;
+}

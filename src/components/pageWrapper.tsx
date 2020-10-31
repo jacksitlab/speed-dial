@@ -16,8 +16,8 @@ class PageWrapper extends React.Component<any, any> {
     }
     render() {
         return (
-            <div className="container-fluid p-0">
-                <nav className="navbar navbar-expand navbar-dark bg-dark">
+            <div className="container">
+                <nav className="navbar">
                     <NavLink className="navbar-brand" style={{ color: '#bd9f6f' }} to="/"><b>Speed</b>Dial</NavLink>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         {/* <ul className="navbar-nav mr-auto">
@@ -34,15 +34,16 @@ class PageWrapper extends React.Component<any, any> {
                                 <NavLink className="nav-link" to="/privacy">Privacy</NavLink>
                             </li>
                         </ul> */}
-                        <div className="form-inline" >
-                            <ul className="navbar-nav mr-auto">
-                                <li className="nav-item">
-                                    <a className="nav-link github-fork-ribbon" data-ribbon="Fork me on GitHub" target="_blank" href="https://github.com/jacksitlab/speed-dial">SourceCode</a>
-                                </li>
-                            </ul>
-                        </div>
+
                     </div>
                 </nav>
+                <div className="form-inline" >
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <a className="nav-link github-fork-ribbon" data-ribbon="Fork me on GitHub" target="_blank" href="https://github.com/jacksitlab/speed-dial">SourceCode</a>
+                        </li>
+                    </ul>
+                </div>
                 {this.props.children}
                 {/* <LoadingOverlay />
                 <NotificationLayer /> */}

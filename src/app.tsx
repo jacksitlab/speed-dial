@@ -5,6 +5,7 @@ import '../node_modules/github-fork-ribbon-css/gh-fork-ribbon.css'
 import './app.css'
 import PageWrapper from 'components/pageWrapper';
 import MainPage from 'components/mainPage';
+import ItemActions from 'actions/itemActions';
 
 export const globals = {
 
@@ -16,6 +17,10 @@ const NotFoundPage = () => {
 
 class App extends React.Component {
 
+    public constructor(props: any) {
+        super(props);
+        ItemActions.loadData();
+    }
     componentDidMount() {
 
     }
@@ -24,7 +29,10 @@ class App extends React.Component {
 
             <HashRouter>
                 <Switch>
-                    <Route path="/" component={MainPage} />
+                    <Route path="/" exact>
+                        <MainPage match={{ params: { id: "0" } }} />
+                    </Route>
+                    <Route path="/:id" component={MainPage} />
 
                 </Switch>
             </HashRouter>
