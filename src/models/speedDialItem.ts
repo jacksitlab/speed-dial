@@ -81,5 +81,12 @@ class SpeedDialItem {
         }
         return item ? item.items : null;
     }
+    public static load(items: ISpeedDialItem[]): SpeedDialItem[] {
+        const results: SpeedDialItem[] = [];
+        for (let i = 0; i < items.length; i++) {
+            results.push(new SpeedDialItem(items[i]));
+        }
+        return results;
+    }
 }
 export default SpeedDialItem;

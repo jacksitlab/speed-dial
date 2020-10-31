@@ -5,7 +5,9 @@
 html ,body{
     height: 100%;
 }
-
+a {
+    text-decoration: none;
+}
 /*@media screen and (min-width: 576px) {*/
 #app{
     height: 100%;
@@ -35,4 +37,24 @@ li{list-style-type: none;}
     right:0;
     height: 50px;
     background:#0F0;
+    align-items: center;
+    background-color: rgb(52, 58, 64);
+    box-sizing: border-box;
+    color: rgb(33, 37, 41);
+    font-size: 16px;
+    font-weight: 400;
+    height: 56px;
+    justify-content: flex-start;
+    line-height: 24px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    text-align: left;
+    text-size-adjust: 100%;
+}
+.navbar-brand{
+    font-size: 26px;
+    line-height: 40px;
+    vertical-align: middle;
 }
