@@ -22,21 +22,23 @@ class SpeedDialItemView extends React.Component<ISpeedDialProperties>{
         // }
     }
     render() {
+        const MAX_LEN = 28;
+        const reducedTitle = this.props.item.title.length > MAX_LEN ? this.props.item.title.substring(0, MAX_LEN - 3) + "..." : this.props.item.title;
         if (this.props.item.type == "folder") {
 
             return <NavLink className="item" to={`/${this.props.item.id}`}>
 
-                <div onClick={() => { this.onItemClicked(); }}>
-                    <div className=""></div>
-                    <span>{this.props.item.title}</span>
+                <div className="wrapper" onClick={() => { this.onItemClicked(); }}>
+                    <div className="icon"></div>
+                    <span className="title">{reducedTitle}</span>
                 </div></NavLink>
         }
         else {
             return <a className="item" href={this.props.item.url} >
 
-                <div onClick={() => { this.onItemClicked(); }}>
-                    <div className=""></div>
-                    <span>{this.props.item.title}</span>
+                <div className="wrapper" onClick={() => { this.onItemClicked(); }}>
+                    <div className="icon"></div>
+                    <span className="title">{reducedTitle}</span>
                 </div></a>
         }
     }

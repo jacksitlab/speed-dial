@@ -9,7 +9,7 @@ class ItemActions {
 
     public static loadData() {
 
-        requestRest<SpeedDialData>('/assets/content.json', { method: 'GET' }).then((data) => {
+        requestRest<SpeedDialData>('/content.json', { method: 'GET' }).then((data) => {
             // const subitems: SpeedDialItem[] = [];
             // subitems.push(new SpeedDialItem({ id: "3", type: "link", url: "https://github.com/jacksitlab", title: "my github" }));
             // subitems.push(new SpeedDialItem({ id: "4", type: "link", url: "https://cloud.jacks-it-lab.de" }));

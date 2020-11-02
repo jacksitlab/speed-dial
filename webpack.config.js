@@ -88,7 +88,7 @@ module.exports = (env) => {
                 to: '.'
             }, {
                 from: './src/assets/*',
-                to: 'assets/',
+                to: '',
                 flatten: true
 
             }]),/*

@@ -15,9 +15,9 @@ a {
 }
 li{list-style-type: none;}
 .container{
-    width: 1400px;
+    width: 1250px;
     margin:50px auto;
-    background: #F00;
+    background:none;
 }
 .speed-dial-container{
     widows: 100%;
@@ -25,11 +25,34 @@ li{list-style-type: none;}
 }
 .speed-dial-container > .item{
     width: 200px;
-    height: 200px;
+    height: 170px;
     margin:25px;
-    background: #CCC;
+    background: none;
     display: inline-block;
+    position: relative;
 }
+.speed-dial-container > .item > .wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.speed-dial-container > .item .icon{
+    width: 200px;
+    height: 146px;
+    border: 1px solid #AAA;
+    box-shadow: 0px 0px 2px #666;
+}
+.speed-dial-container > .item .title{
+    width: 190px;
+    height: 24px;
+    display: block;
+    text-align: center;
+    background: #EEE;
+    margin: 13px auto 0 auto;
+    line-height: 24px;
+    border-radius: 10px;
+}
+
 .navbar{
     position: fixed;
     top:0;
