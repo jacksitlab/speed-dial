@@ -29,7 +29,9 @@ class MainPage extends React.Component<any, IMainPageState> {
         itemStore.removeListener("change", this.onDataLoaded);
     }
     private onDataLoaded() {
-        this.setState({ items: itemStore.getData() })
+        const data = itemStore.getData();
+        console.log(`data loaded: ${JSON.stringify(data)}`)
+        this.setState({ items: data })
     }
     private findItem(id: string): SpeedDialItem | null {
         if (this.state.items) {
