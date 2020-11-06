@@ -6,6 +6,7 @@ import './app.css'
 import PageWrapper from 'components/pageWrapper';
 import MainPage from 'components/mainPage';
 import ItemActions from 'actions/itemActions';
+import itemStore from 'stores/itemStore';
 
 export const globals = {
 
@@ -21,12 +22,9 @@ class App extends React.Component {
         super(props);
         ItemActions.loadData();
     }
-    componentDidMount() {
 
-    }
     render() {
         return (
-
             <HashRouter>
                 <Switch>
                     <Route path="/" exact>
@@ -36,8 +34,6 @@ class App extends React.Component {
 
                 </Switch>
             </HashRouter>
-
-
         )
     }
 }

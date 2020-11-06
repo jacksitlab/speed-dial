@@ -29,7 +29,7 @@ class SpeedDialItemView extends React.Component<ISpeedDialProperties>{
             return <NavLink className="item" to={`/${this.props.item.id}`}>
 
                 <div className="wrapper" onClick={() => { this.onItemClicked(); }}>
-                    <div className="icon"></div>
+                    <div className="icon" style={{ backgroundImage: `url(${this.props.item.icon}` }}></div>
                     <span className="title">{reducedTitle}</span>
                 </div></NavLink>
         }
@@ -37,7 +37,7 @@ class SpeedDialItemView extends React.Component<ISpeedDialProperties>{
             return <a className="item" href={this.props.item.url} >
 
                 <div className="wrapper" onClick={() => { this.onItemClicked(); }}>
-                    <div className="icon"></div>
+                    <div className="icon" style={{ backgroundImage: `url(${this.props.item.icon}` }}></div>
                     <span className="title">{reducedTitle}</span>
                 </div></a>
         }

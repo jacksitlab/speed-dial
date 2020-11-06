@@ -25,6 +25,12 @@ class ItemStore extends EventEmitter {
     public getData(): SpeedDialItem[] | null {
         return this.items;
     }
+    public getTitle(): string {
+        return this.data ? this.data.title : "";
+    }
+    public getBackground(): string {
+        return this.data ? this.data.background : "";
+    }
 }
 const itemStore = new ItemStore();
 dispatcher.register(itemStore.handleAction.bind(itemStore))

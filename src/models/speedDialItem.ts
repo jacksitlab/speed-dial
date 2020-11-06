@@ -33,6 +33,9 @@ class SpeedDialItem {
         }
         else {
             this.url = root.url || "";
+            if (this.url.length > 0 && this.icon == "") {
+                this.icon = `${this.url}${this.url.endsWith("/") ? "" : "/"}favicon.ico`
+            }
         }
 
     }

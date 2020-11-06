@@ -1,24 +1,31 @@
 import * as React from 'react'
 import { NavLink } from 'react-router-dom';
+import itemStore from 'stores/itemStore';
 
-class PageWrapper extends React.Component<any, any> {
+class PageWrapper extends React.Component<any, { subtitle: string, background: string }> {
 
     constructor(props: any) {
         super(props);
+        this.state = { subtitle: "", background: "" }
+        this.onDataLoaded = this.onDataLoaded.bind(this);
+        itemStore.on("change", this.onDataLoaded);
+    }
+
+    componentWillUnmount() {
+        itemStore.removeListener("change", this.onDataLoaded);
+    }
+    private onDataLoaded() {
+        this.setState({ subtitle: itemStore.getTitle(), background: itemStore.getBackground() })
+
 
     }
-    private getEditorBar(): JSX.Element {
-        return <div className="dropdown navbar-nav mr-auto" >
-            <input type="number" className="form-control col-3 mx-2" placeholder="width" onChange={(e) => { }} value={22}></input>
-            <span style={{ color: '#EEEEEE' }} className=""> x </span>
-            <input type="number" className="form-control col-3 mx-2" placeholder="height" onChange={(e) => { }} value={22}></input>
-        </div>
-    }
+
     render() {
         return (
             <div className="container">
                 <nav className="navbar">
-                    <NavLink className="navbar-brand" style={{ color: '#bd9f6f' }} to="/"><b>Speed</b>Dial</NavLink>
+                    <NavLink className="navbar-brand" style={{}} to="/"><b>Speed</b>Dial</NavLink>
+                    <span className="navbar-brand" style={{ marginLeft: '30px' }}>{this.state.subtitle}</span>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         {/* <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
