@@ -9,6 +9,7 @@ import ItemActions from 'actions/itemActions';
 import itemStore from 'stores/itemStore';
 
 export const globals = {
+    APP_TITLE: "Speed Dial"
 
 }
 

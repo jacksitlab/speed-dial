@@ -5,6 +5,10 @@
 html ,body{
     height: 100%;
 }
+body{
+    background-size: cover;
+    background-position: center;
+}
 a {
     text-decoration: none;
 }
@@ -41,6 +45,7 @@ li{list-style-type: none;}
     height: 146px;
     border: 1px solid #AAA;
     box-shadow: 0px 0px 2px #666;
+    background-color: rgba(255,255,255,0.95);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 20%;

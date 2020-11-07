@@ -16,6 +16,7 @@ class ItemStore extends EventEmitter {
         switch (action.type) {
             case ItemActions.ACTION_LOADED:
                 this.data = action.data;
+                console.log(`data loaded: ${JSON.stringify(this.data)}`)
                 if (this.data) {
                     this.items = SpeedDialItem.load(this.data.data);
                 }

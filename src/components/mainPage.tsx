@@ -1,9 +1,11 @@
+import { globals } from 'app';
 import SpeedDialItem from 'models/speedDialItem';
 import * as React from 'react';
 import { Route, Switch, useRouteMatch, withRouter } from "react-router";
 import itemStore from 'stores/itemStore';
 import PageWrapper from './pageWrapper';
 import SpeedDialItemView from './speedDialItemView';
+
 
 export interface IMainPageProperties {
     match: { params: { id: string } }
@@ -25,13 +27,15 @@ class MainPage extends React.Component<any, IMainPageState> {
         console.log(this.props)
 
     }
+
     componentWillUnmount() {
         itemStore.removeListener("change", this.onDataLoaded);
     }
     private onDataLoaded() {
         const data = itemStore.getData();
-        console.log(`data loaded: ${JSON.stringify(data)}`)
         this.setState({ items: data })
+
+
     }
     private findItem(id: string): SpeedDialItem | null {
         if (this.state.items) {
@@ -42,6 +46,19 @@ class MainPage extends React.Component<any, IMainPageState> {
             }
         }
         return null;
+    }
+    isUrl(s: string): boolean {
+        return s.trim().startsWith("url(");
+    }
+    componentDidUpdate() {
+        document.title = `${globals.APP_TITLE}- ${itemStore.getTitle()}`;
+        const bg = itemStore.getBackground();
+        if (this.isUrl(bg)) {
+            document.body.style.backgroundImage = bg;
+        }
+        else {
+            document.body.style.background = bg;
+        }
     }
     private onItemClicked(id: string) {
         console.log(`${id} clicked`)
@@ -54,6 +71,7 @@ class MainPage extends React.Component<any, IMainPageState> {
         console.log(`${url} clicked`)
     }
     render() {
+
         console.log("render")
         const items = SpeedDialItem.find(this.state.items, this.props.match.params.id);
         if (items) {
