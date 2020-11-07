@@ -18,10 +18,31 @@ a {
     overflow: hidden;
 }
 li{list-style-type: none;}
+
 .container{
-    width: 1250px;
+    width: 1500px;
     margin:50px auto;
     background:none;
+}
+@media (max-width: 1550px){
+    .container{
+        width: 1250px;
+    }
+}
+@media (max-width: 1300px){
+    .container{
+        width: 1000px;
+    }
+}
+@media (max-width: 1050px){
+    .container{
+        width: 750px;
+    }
+}
+@media (max-width: 800px){
+    .container{
+        width: 750px;
+    }
 }
 .speed-dial-container{
     widows: 100%;
