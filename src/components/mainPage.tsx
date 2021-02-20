@@ -19,15 +19,14 @@ export interface IMainPageState {
 class MainPage extends React.Component<any, IMainPageState> {
 
     private readonly items: SpeedDialItem[];
+    private updated:boolean;
     public constructor(props: any) {
         super(props);
+        this.updated = false;
         let data = itemStore.getData();
         this.state = { items: data, filteredItems: SpeedDialItem.find(data, this.props.match.params.id, ""), search: "" };
         this.onDataLoaded = this.onDataLoaded.bind(this);
         itemStore.on("change", this.onDataLoaded);
-        console.log(`id=${this.props.match.params.id}`);
-        console.log(this.props)
-
     }
 
     componentWillUnmount() {
@@ -39,20 +38,11 @@ class MainPage extends React.Component<any, IMainPageState> {
 
 
     }
-    private findItem(id: string): SpeedDialItem | null {
-        if (this.state.items) {
-            for (let i = 0; i < this.state.items.length; i++) {
-                if (this.state.items[i].id == id) {
-                    return this.state.items[i];
-                }
-            }
-        }
-        return null;
-    }
     isUrl(s: string): boolean {
         return s.trim().startsWith("url(");
     }
     componentDidUpdate() {
+        console.log("update")
         document.title = `${globals.APP_TITLE}- ${itemStore.getTitle()}`;
         const bg = itemStore.getBackground();
         if (this.isUrl(bg)) {
@@ -61,13 +51,11 @@ class MainPage extends React.Component<any, IMainPageState> {
         else {
             document.body.style.background = bg;
         }
+        this.updated = true;
     }
     private onItemClicked(id: string) {
         console.log(`${id} clicked`)
-        // const item = this.findItem(id);
-        // if (item != null) {
-        //     this.setState({ items: item.items })
-        // }
+      // this.setState({ filteredItems: SpeedDialItem.find(this.state.items, this.props.match.params.id, this.state.search) });
     }
     private onItemUrlClicked(url: string) {
         console.log(`${url} clicked`)
@@ -78,22 +66,26 @@ class MainPage extends React.Component<any, IMainPageState> {
     }
     private onEnterPressed() {
         const items = this.state.filteredItems;
-        if (items && items.length==1) {
-            if(itemStore.doOpenInNewTab()){
-                const w=window?window.open(items[0].url, '_blank'):null;
-                if(w){
+        if (items && items.length == 1) {
+            if (itemStore.doOpenInNewTab()) {
+                const w = window ? window.open(items[0].url, '_blank') : null;
+                if (w) {
                     w.focus();
                 }
             }
-            else{
+            else {
                 window.location.href = items[0].url;
             }
         }
     }
     render() {
 
-        console.log(`render with search ${this.state.search}`)
-        const items = this.state.filteredItems;
+        console.log(`render with search ${this.state.search} and id ${this.props.match.params.id}`)
+        let items = this.state.filteredItems;
+        if(this.updated){
+            items = SpeedDialItem.find(this.state.items, this.props.match.params.id, this.state.search);
+            this.updated = false;
+        }
         const openInNewTab = itemStore.doOpenInNewTab();
         if (items) {
             return <PageWrapper onSearch={(searchString: string) => { this.onSearch(searchString); }} onEnter={() => { this.onEnterPressed() }}>
@@ -101,7 +93,7 @@ class MainPage extends React.Component<any, IMainPageState> {
                     {items.map((item) => {
                         return <SpeedDialItemView key={`item_${item.id}`} item={item}
                             onItemUrlClicked={(url) => { this.onItemUrlClicked(url) }}
-                            onItemClicked={(id) => { this.onItemClicked(id); }} 
+                            onItemClicked={(id) => { this.onItemClicked(id); }}
                             openInNewTab={openInNewTab} />
                     })}
                 </div>

@@ -5,11 +5,11 @@ interface PageWrapperProps{
     onSearch?(onSearch:string):void;
     onEnter?():void;
 }
-class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, background: string , showForkRibbon:boolean}> {
+class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, background: string , showForkRibbon:boolean,searchValue:string}> {
 
     constructor(props: PageWrapperProps) {
         super(props);
-        this.state = { subtitle: "", background: "" , showForkRibbon:true}
+        this.state = { subtitle: "", background: "" , showForkRibbon:true,searchValue:""}
         this.onDataLoaded = this.onDataLoaded.bind(this);
         itemStore.on("change", this.onDataLoaded);
     }
@@ -23,10 +23,14 @@ class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, 
 
     }
     private onInputChange(e:React.ChangeEvent<HTMLInputElement>){
-        const value = e.target.value;
+        this.onSearch(e.target.value);
+       
+    }
+    private onSearch(e:string){
         if(this.props.onSearch){
-            this.props.onSearch(value);
+            this.props.onSearch(e);
         }
+        this.setState({searchValue:e});
         
     }
     private onKeyPressed(e:React.KeyboardEvent<HTMLInputElement>){
@@ -41,12 +45,10 @@ class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, 
         return (
             <div className="container">
                 <nav className="navbar">
-                    <NavLink className="navbar-brand" style={{}} to="/"><b>Speed</b>Dial</NavLink>
+                    <NavLink onClick={()=>{this.onSearch("");}} className="navbar-brand" style={{}} to="/"><b>Speed</b>Dial</NavLink>
                     <span className="navbar-brand" style={{ marginLeft: '30px' }}>{this.state.subtitle}</span>
                     <div className="navbar-search">
-                        <input autoFocus={true} type="text" placeholder="Search" onKeyPress={(e)=>{this.onKeyPressed(e);}} onChange={(e)=>{this.onInputChange(e)}}/>
-
-
+                        <input autoFocus={true} type="text" placeholder="Search" value={this.state.searchValue} onKeyPress={(e)=>{this.onKeyPressed(e);}} onChange={(e)=>{this.onInputChange(e)}}/>
                     </div>
                 </nav>
                 <div className="form-inline" >

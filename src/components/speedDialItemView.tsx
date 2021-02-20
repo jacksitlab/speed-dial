@@ -15,7 +15,7 @@ class SpeedDialItemView extends React.Component<ISpeedDialProperties>{
         super(props);
     }
     private onItemClicked() {
-
+        this.props.onItemClicked(this.props.item.id);
     }
     render() {
         const MAX_LEN = 28;
