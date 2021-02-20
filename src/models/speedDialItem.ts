@@ -34,7 +34,9 @@ class SpeedDialItem {
         else {
             this.url = root.url || "";
             if (this.url.length > 0 && this.icon == "") {
-                this.icon = `${this.url}${this.url.endsWith("/") ? "" : "/"}favicon.ico`
+                const idx = this.url.indexOf("/",8);
+                //this.icon = `${this.url}${this.url.endsWith("/") ? "" : "/"}favicon.ico`
+                this.icon = idx>8?(this.url.substring(0,idx)+"/favicon.ico"):(this.url+"/favicon.ico");
             }
         }
 
