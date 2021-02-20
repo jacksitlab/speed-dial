@@ -44,7 +44,7 @@ class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, 
                     <NavLink className="navbar-brand" style={{}} to="/"><b>Speed</b>Dial</NavLink>
                     <span className="navbar-brand" style={{ marginLeft: '30px' }}>{this.state.subtitle}</span>
                     <div className="navbar-search">
-                        <input type="text" placeholder="Search" onKeyPress={(e)=>{this.onKeyPressed(e);}} onChange={(e)=>{this.onInputChange(e)}}/>
+                        <input autoFocus={true} type="text" placeholder="Search" onKeyPress={(e)=>{this.onKeyPressed(e);}} onChange={(e)=>{this.onInputChange(e)}}/>
 
 
                     </div>
