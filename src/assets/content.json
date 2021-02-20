@@ -1,6 +1,7 @@
 {
     "title": "testpage",
     "background": "#1A5FCF",
+    "showForkRibbon":true,
     "data": [
         {
             "id": "1",

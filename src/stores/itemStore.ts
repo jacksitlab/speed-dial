@@ -29,6 +29,9 @@ class ItemStore extends EventEmitter {
     public getTitle(): string {
         return this.data ? this.data.title : "";
     }
+    public showForkRibbon(): boolean {
+        return this.data ? this.data.showForkRibbon : true;
+    }
     public getBackground(): string {
         return this.data ? this.data.background : "";
     }

@@ -4,11 +4,11 @@ import itemStore from 'stores/itemStore';
 interface PageWrapperProps{
     onSearch?(onSearch:string):void;
 }
-class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, background: string }> {
+class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, background: string , showForkRibbon:boolean}> {
 
     constructor(props: PageWrapperProps) {
         super(props);
-        this.state = { subtitle: "", background: "" }
+        this.state = { subtitle: "", background: "" , showForkRibbon:true}
         this.onDataLoaded = this.onDataLoaded.bind(this);
         itemStore.on("change", this.onDataLoaded);
     }
@@ -17,7 +17,7 @@ class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, 
         itemStore.removeListener("change", this.onDataLoaded);
     }
     private onDataLoaded() {
-        this.setState({ subtitle: itemStore.getTitle(), background: itemStore.getBackground() })
+        this.setState({ subtitle: itemStore.getTitle(), background: itemStore.getBackground() ,showForkRibbon:itemStore.showForkRibbon()})
 
 
     }
@@ -42,7 +42,7 @@ class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, 
                 <div className="form-inline" >
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <a className="nav-link github-fork-ribbon" data-ribbon="Fork me on GitHub" target="_blank" href="https://github.com/jacksitlab/speed-dial">SourceCode</a>
+                            {this.state.showForkRibbon?<a className="nav-link github-fork-ribbon" data-ribbon="Fork me on GitHub" target="_blank" href="https://github.com/jacksitlab/speed-dial">SourceCode</a>:""}
                         </li>
                     </ul>
                 </div>
