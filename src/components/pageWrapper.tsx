@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { NavLink } from 'react-router-dom';
 import itemStore from 'stores/itemStore';
+interface PageWrapperProps{
+    onSearch?(onSearch:string):void;
+}
+class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, background: string }> {
 
-class PageWrapper extends React.Component<any, { subtitle: string, background: string }> {
-
-    constructor(props: any) {
+    constructor(props: PageWrapperProps) {
         super(props);
         this.state = { subtitle: "", background: "" }
         this.onDataLoaded = this.onDataLoaded.bind(this);
@@ -19,28 +21,21 @@ class PageWrapper extends React.Component<any, { subtitle: string, background: s
 
 
     }
-
+    private onInputChange(e:React.ChangeEvent<HTMLInputElement>){
+        const value = e.target.value;
+        if(this.props.onSearch){
+            this.props.onSearch(value);
+        }
+    }
     render() {
         return (
             <div className="container">
                 <nav className="navbar">
                     <NavLink className="navbar-brand" style={{}} to="/"><b>Speed</b>Dial</NavLink>
                     <span className="navbar-brand" style={{ marginLeft: '30px' }}>{this.state.subtitle}</span>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        {/* <ul className="navbar-nav mr-auto">
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/documentation">Documentation</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/editor">Editor</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/imprint">Imprint</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/privacy">Privacy</NavLink>
-                            </li>
-                        </ul> */}
+                    <div className="navbar-search">
+                        <input type="text" placeholder="Search" onChange={(e)=>{this.onInputChange(e)}}/>
+
 
                     </div>
                 </nav>

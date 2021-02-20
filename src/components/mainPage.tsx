@@ -12,6 +12,7 @@ export interface IMainPageProperties {
 }
 export interface IMainPageState {
     items: SpeedDialItem[] | null;
+    search: string;
 }
 
 class MainPage extends React.Component<any, IMainPageState> {
@@ -20,7 +21,7 @@ class MainPage extends React.Component<any, IMainPageState> {
     public constructor(props: any) {
         super(props);
 
-        this.state = { items: itemStore.getData() };
+        this.state = { items: itemStore.getData() , search:""};
         this.onDataLoaded = this.onDataLoaded.bind(this);
         itemStore.on("change", this.onDataLoaded);
         console.log(`id=${this.props.match.params.id}`);
@@ -70,12 +71,16 @@ class MainPage extends React.Component<any, IMainPageState> {
     private onItemUrlClicked(url: string) {
         console.log(`${url} clicked`)
     }
+    private onSearch(searchString:string){
+        console.log("search for "+searchString);
+        this.setState({search:searchString});
+    }
     render() {
 
-        console.log("render")
-        const items = SpeedDialItem.find(this.state.items, this.props.match.params.id);
+        console.log(`render with search ${this.state.search}`)
+        const items = SpeedDialItem.find(this.state.items, this.props.match.params.id, this.state.search);
         if (items) {
-            return <PageWrapper>
+            return <PageWrapper onSearch={(searchString:string)=>{this.onSearch(searchString);}}>
                 <div className="speed-dial-container">
                     {items.map((item) => {
                         return <SpeedDialItemView key={`item_${item.id}`} item={item}

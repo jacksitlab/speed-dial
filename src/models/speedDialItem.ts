@@ -67,22 +67,55 @@ class SpeedDialItem {
         }
         return null;
     }
-    public static find(items: SpeedDialItem[] | null, id: string): SpeedDialItem[] | null {
-        console.log(`try to find item for id ${id}`)
+
+    private search(search:string):SpeedDialItem[]{
+        let results:SpeedDialItem[]=[];
+        if(this.type == "folder"){
+            for (let i = 0; i < this.items.length; i++) {
+                results = results.concat(this.items[i].search(search));
+            }
+        }
+        else {
+            if(this.title.toLowerCase().includes(search.toLowerCase())){
+                results.push(this)
+            }
+            else if(this.url.toLowerCase().includes(search.toLowerCase())){
+                results.push(this)
+            }
+        }   
+        return results;
+    }
+    public static find(items: SpeedDialItem[] | null, id: string, search=""): SpeedDialItem[] | null {
+        console.log(`try to find item for id ${id} or search ${search}`)
         if (items == null) {
             return null;
         }
-        if (id == "0") {
-            return items;
-        }
         let item: SpeedDialItem | null = null;
-        for (let i = 0; i < items.length; i++) {
-            item = items[i].find(id);
-            if (item != null) {
-                break;
+        if(search.length==0) {
+            if (id == "0") {
+                return items;
             }
+            for (let i = 0; i < items.length; i++) {
+                item = items[i].find(id);
+                if (item != null) {
+                    break;
+                }
+            }
+            return item ? item.items : null;
         }
-        return item ? item.items : null;
+        else {
+            let ritems:SpeedDialItem[]=[];
+            for (let i = 0; i < items.length; i++) {
+                const s=items[i].search(search);
+                console.log(`search result size=${s.length}`)
+                ritems=ritems.concat(s);
+            }
+            return ritems;
+        }
+        
+    }
+    public static root():SpeedDialItem{
+        return new SpeedDialItem({id:"0",type:"folder",});
     }
     public static load(items: ISpeedDialItem[]): SpeedDialItem[] {
         const results: SpeedDialItem[] = [];

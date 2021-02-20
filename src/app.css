@@ -110,3 +110,16 @@ li{list-style-type: none;}
     vertical-align: middle;
     color: #bd9f6f
 }
+.navbar-search{
+    float:right;
+    height: 30px;
+    margin: 2px 200px 5px 0;
+    padding:0;
+}
+.navbar-search > input {
+    line-height: 30px;
+    border-radius: 6px;
+    padding:2px 5px;
+    font-size: 16px;
+    color: #000;
+}
