@@ -5,4 +5,5 @@ export interface SpeedDialData {
     background: string;
     showForkRibbon: boolean;
     data: ISpeedDialItem[];
+    openInNewTab?: boolean;
 }

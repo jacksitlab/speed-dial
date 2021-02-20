@@ -20,13 +20,13 @@ npm run build
 
 ```
 npm run build
-docker build -t speed-dial:latest .
+docker build -t jacksitlab/speed-dial:latest .
 ```
 
 ## Use docker image
 
 ```
-docker run -d -v $(pwd)/content.json:/usr/share/nginx/html/content.json speed-dial:latest
+docker run -d -v $(pwd)/content.json:/usr/share/nginx/html/content.json jacksitlab/speed-dial:latest
 ```
 
 ## content.json

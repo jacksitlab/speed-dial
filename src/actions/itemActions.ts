@@ -10,11 +10,6 @@ class ItemActions {
     public static loadData() {
 
         requestRest<SpeedDialData>('/content.json', { method: 'GET' }).then((data) => {
-            // const subitems: SpeedDialItem[] = [];
-            // subitems.push(new SpeedDialItem({ id: "3", type: "link", url: "https://github.com/jacksitlab", title: "my github" }));
-            // subitems.push(new SpeedDialItem({ id: "4", type: "link", url: "https://cloud.jacks-it-lab.de" }));
-            // items.push(new SpeedDialItem({ id: "1", type: "link", url: "https://github.com" }));
-            // items.push(new SpeedDialItem({ id: "2", type: "folder", title: "tree1", items: subitems }));
             dispatcher.dispatch({ type: ItemActions.ACTION_LOADED, data: data.data })
 
         }).catch((error) => {

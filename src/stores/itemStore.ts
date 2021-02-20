@@ -35,6 +35,9 @@ class ItemStore extends EventEmitter {
     public getBackground(): string {
         return this.data ? this.data.background : "";
     }
+    public doOpenInNewTab():boolean {
+        return this.data? this.data.openInNewTab?this.data.openInNewTab:false:false;
+    }
 }
 const itemStore = new ItemStore();
 dispatcher.register(itemStore.handleAction.bind(itemStore))

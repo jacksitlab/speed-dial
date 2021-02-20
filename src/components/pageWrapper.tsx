@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import itemStore from 'stores/itemStore';
 interface PageWrapperProps{
     onSearch?(onSearch:string):void;
+    onEnter?():void;
 }
 class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, background: string , showForkRibbon:boolean}> {
 
@@ -26,6 +27,15 @@ class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, 
         if(this.props.onSearch){
             this.props.onSearch(value);
         }
+        
+    }
+    private onKeyPressed(e:React.KeyboardEvent<HTMLInputElement>){
+        console.log(`key ${e.key} pressed`)
+        if( e.key == "Enter" ){
+            if(this.props.onEnter){
+                this.props.onEnter();
+            }
+        }
     }
     render() {
         return (
@@ -34,7 +44,7 @@ class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, 
                     <NavLink className="navbar-brand" style={{}} to="/"><b>Speed</b>Dial</NavLink>
                     <span className="navbar-brand" style={{ marginLeft: '30px' }}>{this.state.subtitle}</span>
                     <div className="navbar-search">
-                        <input type="text" placeholder="Search" onChange={(e)=>{this.onInputChange(e)}}/>
+                        <input type="text" placeholder="Search" onKeyPress={(e)=>{this.onKeyPressed(e);}} onChange={(e)=>{this.onInputChange(e)}}/>
 
 
                     </div>
