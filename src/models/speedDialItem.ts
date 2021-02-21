@@ -1,5 +1,3 @@
-import { timeStamp } from "console";
-
 export interface ISpeedDialItem {
     id: string;
     url?: string;

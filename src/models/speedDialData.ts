@@ -1,9 +1,25 @@
 import { ISpeedDialItem } from "./speedDialItem";
 
+export interface StyleData {
+    background?: string;
+    showForkRibbon?: boolean;
+    headerBackground?: string;
+}
+
+export const DEFAULT_STYLEDATA = {
+    background: '#FFFFFF',
+    headerBackground: undefined,
+    showForkRibbon: true
+}
+export const DEFAULT_SPEED_DIAL_DATA = {
+    title: "",
+    style: DEFAULT_STYLEDATA,
+    data: [],
+    openInNewTab: false
+}
 export interface SpeedDialData {
     title: string;
-    background: string;
-    showForkRibbon: boolean;
+    style?: StyleData;
     data: ISpeedDialItem[];
-    openInNewTab?: boolean;
+    openInNewTab: boolean;
 }

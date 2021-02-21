@@ -1,9 +1,8 @@
 import SpeedDialItem from 'models/speedDialItem';
 import * as React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export interface ISpeedDialProperties {
-
     item: SpeedDialItem;
     onItemClicked(id: string): void;
     onItemUrlClicked(url: string): void;

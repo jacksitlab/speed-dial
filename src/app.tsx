@@ -6,11 +6,9 @@ import './app.css'
 import PageWrapper from 'components/pageWrapper';
 import MainPage from 'components/mainPage';
 import ItemActions from 'actions/itemActions';
-import itemStore from 'stores/itemStore';
 
 export const globals = {
     APP_TITLE: "Speed Dial"
-
 }
 
 const NotFoundPage = () => {

@@ -1,8 +1,10 @@
 {
     "title": "testpage",
-    "background": "#1A5FCF",
-    "showForkRibbon":true,
-    "openInNewTab":true,
+    "style": {
+        "background": "#1A5FCF",
+        "showForkRibbon": true
+    },
+    "openInNewTab": true,
     "data": [
         {
             "id": "1",

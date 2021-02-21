@@ -1,7 +1,6 @@
 import { globals } from 'app';
 import SpeedDialItem from 'models/speedDialItem';
 import * as React from 'react';
-import { Redirect, Route, Switch, useRouteMatch, withRouter } from "react-router";
 import itemStore from 'stores/itemStore';
 import PageWrapper from './pageWrapper';
 import SpeedDialItemView from './speedDialItemView';
