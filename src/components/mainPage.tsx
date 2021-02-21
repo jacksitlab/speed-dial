@@ -84,6 +84,9 @@ class MainPage extends React.Component<any, IMainPageState> {
             } else if(this.state.search.startsWith("d ")){
                 this.openUrl(`https://duckduckgo.com/search?q=${encodeURI(this.state.search.substring(2)).replace("%20","+")}&t=vivaldi&ia=web`);
             }
+            else if (/[a-z]+\.[a-z]{2,3}/.exec(this.state.search)){
+                this.openUrl(`https://${this.state.search}`);
+            }
         }
     }
     render() {
