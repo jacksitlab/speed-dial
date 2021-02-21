@@ -17,6 +17,7 @@ class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, 
     componentWillUnmount() {
         itemStore.removeListener("change", this.onDataLoaded);
     }
+
     private onDataLoaded() {
         this.setState({ subtitle: itemStore.getTitle(), background: itemStore.getBackground() ,showForkRibbon:itemStore.showForkRibbon()})
 
@@ -48,7 +49,10 @@ class PageWrapper extends React.Component<PageWrapperProps, { subtitle: string, 
                     <NavLink onClick={()=>{this.onSearch("");}} className="navbar-brand" style={{}} to="/"><b>Speed</b>Dial</NavLink>
                     <span className="navbar-brand" style={{ marginLeft: '30px' }}>{this.state.subtitle}</span>
                     <div className="navbar-search">
-                        <input autoFocus={true} type="text" placeholder="Search" value={this.state.searchValue} onKeyPress={(e)=>{this.onKeyPressed(e);}} onChange={(e)=>{this.onInputChange(e)}}/>
+                        <input id="tbx_search" autoFocus={true} type="text"  placeholder="Search" 
+                             value={this.state.searchValue} 
+                             onKeyPress={(e)=>{this.onKeyPressed(e);}} 
+                             onChange={(e)=>{this.onInputChange(e)}} />
                     </div>
                 </nav>
                 <div className="form-inline" >

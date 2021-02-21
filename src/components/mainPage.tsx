@@ -42,8 +42,7 @@ class MainPage extends React.Component<any, IMainPageState> {
         return s.trim().startsWith("url(");
     }
     componentDidUpdate() {
-        console.log("update")
-        document.title = `${globals.APP_TITLE}- ${itemStore.getTitle()}`;
+        document.title = `${globals.APP_TITLE} - ${itemStore.getTitle()}`;
         const bg = itemStore.getBackground();
         if (this.isUrl(bg)) {
             document.body.style.backgroundImage = bg;
@@ -54,27 +53,37 @@ class MainPage extends React.Component<any, IMainPageState> {
         this.updated = true;
     }
     private onItemClicked(id: string) {
-        console.log(`${id} clicked`)
-      // this.setState({ filteredItems: SpeedDialItem.find(this.state.items, this.props.match.params.id, this.state.search) });
+        console.log(`${id} clicked`);
     }
     private onItemUrlClicked(url: string) {
-        console.log(`${url} clicked`)
+        console.log(`${url} clicked`);
     }
     private onSearch(searchString: string) {
         console.log("search for " + searchString);
         this.setState({ search: searchString, filteredItems: SpeedDialItem.find(this.state.items, this.props.match.params.id, searchString) });
     }
+    private openUrl(url:string){
+        console.log(`open url ${url}`)
+        if (itemStore.doOpenInNewTab()) {
+            const w = window ? window.open(url, '_blank') : null;
+            if (w) {
+                w.focus();
+            }
+        }
+        else {
+            window.location.href = url;
+        }
+    }
     private onEnterPressed() {
         const items = this.state.filteredItems;
         if (items && items.length == 1) {
-            if (itemStore.doOpenInNewTab()) {
-                const w = window ? window.open(items[0].url, '_blank') : null;
-                if (w) {
-                    w.focus();
-                }
-            }
-            else {
-                window.location.href = items[0].url;
+            this.openUrl(items[0].url);
+        }
+        else {
+            if(this.state.search.startsWith("g ")){
+                this.openUrl(`https://www.google.com/search?q=${encodeURI(this.state.search.substring(2))}`);
+            } else if(this.state.search.startsWith("d ")){
+                this.openUrl(`https://duckduckgo.com/search?q=${encodeURI(this.state.search.substring(2)).replace("%20","+")}&t=vivaldi&ia=web`);
             }
         }
     }
