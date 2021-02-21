@@ -11,6 +11,7 @@ interface PageWrapperState {
     showForkRibbon: boolean;
     searchValue: string;
     headerBackground?: string;
+    headerLogo?: string
 }
 class PageWrapper extends React.Component<PageWrapperProps, PageWrapperState> {
 
@@ -30,7 +31,8 @@ class PageWrapper extends React.Component<PageWrapperProps, PageWrapperState> {
             subtitle: itemStore.getTitle(),
             background: itemStore.getBackground(),
             showForkRibbon: itemStore.showForkRibbon(),
-            headerBackground: itemStore.getHeaderBackground()
+            headerBackground: itemStore.getHeaderBackground(),
+            headerLogo: itemStore.getHeaderLogo()
         })
     }
     private onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -55,7 +57,8 @@ class PageWrapper extends React.Component<PageWrapperProps, PageWrapperState> {
     render() {
         return (
             <div className="container">
-                <nav className="navbar" style={this.state.headerBackground?{background:this.state.headerBackground}:{}}>
+                <nav className="navbar" style={this.state.headerBackground ? { background: this.state.headerBackground } : {}}>
+                    {this.state.headerLogo ? <img src={this.state.headerLogo} className="logo" /> : ""}
                     <NavLink onClick={() => { this.onSearch(""); }} className="navbar-brand" style={{}} to="/"><b>Speed</b>Dial</NavLink>
                     <span className="navbar-brand" style={{ marginLeft: '30px' }}>{this.state.subtitle}</span>
                     <div className="navbar-search">

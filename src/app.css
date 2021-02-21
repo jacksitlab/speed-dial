@@ -123,3 +123,8 @@ li{list-style-type: none;}
     font-size: 16px;
     color: #000;
 }
+.navbar > img.logo {
+    float: left;
+    height: 40px;
+    margin:0 20px 0 0px
+}

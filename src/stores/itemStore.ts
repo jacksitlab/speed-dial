@@ -38,6 +38,10 @@ class ItemStore extends EventEmitter {
     public getHeaderBackground(): string | undefined {
         return this.data?.style?.headerBackground || DEFAULT_STYLEDATA.headerBackground;
     }
+    public getHeaderLogo(): string | undefined {
+        return this.data?.style?.logo || DEFAULT_STYLEDATA.logo;
+    }
+    
     public doOpenInNewTab(): boolean {
         return this.data?.openInNewTab || DEFAULT_SPEED_DIAL_DATA.openInNewTab;
     }

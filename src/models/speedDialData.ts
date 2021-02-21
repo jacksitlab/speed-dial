@@ -4,12 +4,14 @@ export interface StyleData {
     background?: string;
     showForkRibbon?: boolean;
     headerBackground?: string;
+    logo?: string;
 }
 
 export const DEFAULT_STYLEDATA = {
     background: '#FFFFFF',
     headerBackground: undefined,
-    showForkRibbon: true
+    showForkRibbon: true,
+    logo: undefined
 }
 export const DEFAULT_SPEED_DIAL_DATA = {
     title: "",
