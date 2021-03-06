@@ -5,6 +5,7 @@ export interface ISpeedDialItem {
     icon?: string;
     type: "folder" | "link" | "hiddenlink";
     items?: ISpeedDialItem[];
+    tags?: string[];
 }
 
 class SpeedDialItem {
@@ -15,6 +16,7 @@ class SpeedDialItem {
     public readonly icon: string;
     public readonly type: "folder" | "link" | "hiddenlink";
     public readonly items: SpeedDialItem[];
+    public readonly tags: string[];
     public constructor(root: ISpeedDialItem) {
         this.id = root.id;
         this.type = root.type;
@@ -37,6 +39,7 @@ class SpeedDialItem {
                 this.icon = idx > 8 ? (this.url.substring(0, idx) + "/favicon.ico") : (this.url + "/favicon.ico");
             }
         }
+        this.tags = root.tags || [];
 
     }
 
@@ -68,6 +71,9 @@ class SpeedDialItem {
         return null;
     }
 
+    private searchTag(search: string): boolean {
+        return this.tags.filter(e => e.includes(search)).length > 0;
+    }
     private search(search: string): SpeedDialItem[] {
         let results: SpeedDialItem[] = [];
         if (this.type == "folder") {
@@ -76,10 +82,9 @@ class SpeedDialItem {
             }
         }
         else {
-            if (this.title.toLowerCase().includes(search.toLowerCase())) {
-                results.push(this)
-            }
-            else if (this.url.toLowerCase().includes(search.toLowerCase())) {
+            if (this.title.toLowerCase().includes(search.toLowerCase()) ||
+                this.searchTag(search.toLowerCase()) ||
+                this.url.toLowerCase().includes(search.toLowerCase())) {
                 results.push(this)
             }
         }
@@ -90,11 +95,11 @@ class SpeedDialItem {
         if (items == null) {
             return null;
         }
-        const showHidden = search.length>0;
+        const showHidden = search.length > 0;
         let item: SpeedDialItem | null = null;
         if (search.length == 0) {
             if (id == "0") {
-                return items.filter(e=>e.type!="hiddenlink");
+                return items.filter(e => e.type != "hiddenlink");
             }
             for (let i = 0; i < items.length; i++) {
                 item = items[i].find(id);
@@ -102,7 +107,7 @@ class SpeedDialItem {
                     break;
                 }
             }
-            return item ? item.items.filter(e=>e.type!="hiddenlink") : null;
+            return item ? item.items.filter(e => e.type != "hiddenlink") : null;
         }
         else {
             let ritems: SpeedDialItem[] = [];
