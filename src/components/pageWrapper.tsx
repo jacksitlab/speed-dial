@@ -11,7 +11,7 @@ interface PageWrapperState {
     showForkRibbon: boolean;
     searchValue: string;
     headerBackground?: string;
-    headerLogo?: string
+    headerLogo?: string;
 }
 class PageWrapper extends React.Component<PageWrapperProps, PageWrapperState> {
 
@@ -20,19 +20,22 @@ class PageWrapper extends React.Component<PageWrapperProps, PageWrapperState> {
         this.state = { subtitle: "", background: "", showForkRibbon: true, searchValue: "" }
         this.onDataLoaded = this.onDataLoaded.bind(this);
         itemStore.on("change", this.onDataLoaded);
+
     }
 
     componentWillUnmount() {
         itemStore.removeListener("change", this.onDataLoaded);
     }
 
+
     private onDataLoaded() {
+
         this.setState({
             subtitle: itemStore.getTitle(),
             background: itemStore.getBackground(),
             showForkRibbon: itemStore.showForkRibbon(),
             headerBackground: itemStore.getHeaderBackground(),
-            headerLogo: itemStore.getHeaderLogo()
+            headerLogo: itemStore.getHeaderLogo(),
         })
     }
     private onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -79,8 +82,6 @@ class PageWrapper extends React.Component<PageWrapperProps, PageWrapperState> {
                 {/* <LoadingOverlay />
                 <NotificationLayer /> */}
             </div>
-
-
         )
     }
 }

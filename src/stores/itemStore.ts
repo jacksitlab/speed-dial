@@ -16,7 +16,6 @@ class ItemStore extends EventEmitter {
         switch (action.type) {
             case ItemActions.ACTION_LOADED:
                 this.data = action.data;
-                console.log(`data loaded: ${JSON.stringify(this.data)}`)
                 if (this.data) {
                     this.items = SpeedDialItem.load(this.data.data);
                 }
@@ -41,7 +40,6 @@ class ItemStore extends EventEmitter {
     public getHeaderLogo(): string | undefined {
         return this.data?.style?.logo || DEFAULT_STYLEDATA.logo;
     }
-    
     public doOpenInNewTab(): boolean {
         return this.data?.openInNewTab || DEFAULT_SPEED_DIAL_DATA.openInNewTab;
     }

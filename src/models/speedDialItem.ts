@@ -3,7 +3,7 @@ export interface ISpeedDialItem {
     url?: string;
     title?: string;
     icon?: string;
-    type: "folder" | "link";
+    type: "folder" | "link" ;
     items?: ISpeedDialItem[];
 }
 
@@ -13,7 +13,7 @@ class SpeedDialItem {
     public readonly url: string;
     public readonly title: string;
     public readonly icon: string;
-    public readonly type: "folder" | "link";
+    public readonly type: "folder" | "link" ;
     public readonly items: SpeedDialItem[];
     public constructor(root: ISpeedDialItem) {
         this.id = root.id;
@@ -32,9 +32,9 @@ class SpeedDialItem {
         else {
             this.url = root.url || "";
             if (this.url.length > 0 && this.icon == "") {
-                const idx = this.url.indexOf("/",8);
+                const idx = this.url.indexOf("/", 8);
                 //this.icon = `${this.url}${this.url.endsWith("/") ? "" : "/"}favicon.ico`
-                this.icon = idx>8?(this.url.substring(0,idx)+"/favicon.ico"):(this.url+"/favicon.ico");
+                this.icon = idx > 8 ? (this.url.substring(0, idx) + "/favicon.ico") : (this.url + "/favicon.ico");
             }
         }
 
@@ -68,30 +68,30 @@ class SpeedDialItem {
         return null;
     }
 
-    private search(search:string):SpeedDialItem[]{
-        let results:SpeedDialItem[]=[];
-        if(this.type == "folder"){
+    private search(search: string): SpeedDialItem[] {
+        let results: SpeedDialItem[] = [];
+        if (this.type == "folder") {
             for (let i = 0; i < this.items.length; i++) {
                 results = results.concat(this.items[i].search(search));
             }
         }
         else {
-            if(this.title.toLowerCase().includes(search.toLowerCase())){
+            if (this.title.toLowerCase().includes(search.toLowerCase())) {
                 results.push(this)
             }
-            else if(this.url.toLowerCase().includes(search.toLowerCase())){
+            else if (this.url.toLowerCase().includes(search.toLowerCase())) {
                 results.push(this)
             }
-        }   
+        }
         return results;
     }
-    public static find(items: SpeedDialItem[] | null, id: string, search=""): SpeedDialItem[] | null {
+    public static find(items: SpeedDialItem[] | null, id: string, search = ""): SpeedDialItem[] | null {
         console.log(`try to find item for id ${id} or search ${search}`)
         if (items == null) {
             return null;
         }
         let item: SpeedDialItem | null = null;
-        if(search.length==0) {
+        if (search.length == 0) {
             if (id == "0") {
                 return items;
             }
@@ -104,18 +104,18 @@ class SpeedDialItem {
             return item ? item.items : null;
         }
         else {
-            let ritems:SpeedDialItem[]=[];
+            let ritems: SpeedDialItem[] = [];
             for (let i = 0; i < items.length; i++) {
-                const s=items[i].search(search);
+                const s = items[i].search(search);
                 console.log(`search result size=${s.length}`)
-                ritems=ritems.concat(s);
+                ritems = ritems.concat(s);
             }
             return ritems;
         }
-        
+
     }
-    public static root():SpeedDialItem{
-        return new SpeedDialItem({id:"0",type:"folder",});
+    public static root(): SpeedDialItem {
+        return new SpeedDialItem({ id: "0", type: "folder", });
     }
     public static load(items: ISpeedDialItem[]): SpeedDialItem[] {
         const results: SpeedDialItem[] = [];

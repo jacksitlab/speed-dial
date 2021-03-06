@@ -61,7 +61,7 @@ class MainPage extends React.Component<any, IMainPageState> {
         console.log("search for " + searchString);
         this.setState({ search: searchString, filteredItems: SpeedDialItem.find(this.state.items, this.props.match.params.id, searchString) });
     }
-    private openUrl(url:string){
+    public static openUrl(url:string){
         console.log(`open url ${url}`)
         if (itemStore.doOpenInNewTab()) {
             const w = window ? window.open(url, '_blank') : null;
@@ -76,16 +76,16 @@ class MainPage extends React.Component<any, IMainPageState> {
     private onEnterPressed() {
         const items = this.state.filteredItems;
         if (items && items.length == 1) {
-            this.openUrl(items[0].url);
+            MainPage.openUrl(items[0].url);
         }
         else {
             if(this.state.search.startsWith("g ")){
-                this.openUrl(`https://www.google.com/search?q=${encodeURI(this.state.search.substring(2))}`);
+                MainPage.openUrl(`https://www.google.com/search?q=${encodeURI(this.state.search.substring(2))}`);
             } else if(this.state.search.startsWith("d ")){
-                this.openUrl(`https://duckduckgo.com/search?q=${encodeURI(this.state.search.substring(2)).replace("%20","+")}&t=vivaldi&ia=web`);
+                MainPage.openUrl(`https://duckduckgo.com/search?q=${encodeURI(this.state.search.substring(2)).replace("%20","+")}&t=vivaldi&ia=web`);
             }
             else if (/[a-z]+\.[a-z]{2,3}/.exec(this.state.search)){
-                this.openUrl(`https://${this.state.search}`);
+                MainPage.openUrl(`https://${this.state.search}`);
             }
         }
     }
