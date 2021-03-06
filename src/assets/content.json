@@ -1,29 +1,163 @@
 {
-    "title": "testpage",
+    "title": "Jacks IT Lab",
     "style": {
-        "background": "#1A5FCF",
+        "background": "linear-gradient(45deg, rgba(36,28,0,1) 0%, rgba(9,121,67,1) 0%, rgba(0,212,255,1) 100%)",
         "showForkRibbon": true
     },
-    "openInNewTab": true,
     "data": [
         {
-            "id": "1",
-            "url": "https://github.com/opendaylight/transportpce",
-            "title": "github",
+            "id": "001",
+            "url": "https://youtube.com",
+            "title": "youtube",
             "icon": "",
-            "type": "link",
-            "tags":["git","opendaylight","transportpce", "optical", "path", "calculation"]
+            "type": "link"
         },
         {
-            "id": "2",
-            "title": "dir1",
+            "id": "002",
+            "url": "https://reddit.com/r/de",
+            "title": "reddit",
+            "icon": "",
+            "type": "link"
+        },
+        {
+            "id": "003",
+            "url": "https://golem.de",
+            "title": "golem",
+            "icon": "",
+            "type": "link"
+        },
+        {
+            "id": "004",
+            "url": "https://geizhals.de",
+            "title": "geizhals",
+            "icon": "",
+            "type": "link"
+        },
+        {
+            "id": "005",
+            "url": "https://bvg.de",
+            "title": "BVG",
+            "icon": "https://www.bvg.de/themes/bvg-1-0/img/BVG_Herz_Gelb_RGB.svg",
+            "type": "link"
+        },
+        {
+            "id": "006",
+            "url": "https://www.wetteronline.de/wetter/berlin",
+            "title": "wetter-online",
+            "icon": "",
+            "type": "link"
+        },
+        {
+            "id": "007",
+            "url": "https://gls-online-filiale.de/",
+            "title": "GLS Bank",
+            "icon": "",
+            "type": "link"
+        },
+        {
+            "id": "008",
+            "url": "https://www.netflix.com/",
+            "title": "Netflix",
+            "icon": "",
+            "type": "link"
+        },
+        {
+            "id": "009",
+            "url": "https://www.imdb.com/",
+            "title": "IMDB",
+            "icon": "",
+            "type": "link"
+        },
+        {
+            "id": "010",
+            "url": "https://www.mydealz.de/deals",
+            "title": "mydealz",
+            "icon": "",
+            "type": "link"
+        },
+        {
+            "id": "011",
+            "url": "https://twitter.com/risklayer",
+            "title": "risklayer",
+            "icon": "",
+            "type": "link"
+        },
+        {
+            "id": "1",
+            "url": "",
+            "title": "highstreet",
             "icon": "",
             "type": "folder",
             "items": [
                 {
-                    "id": "3",
-                    "url": "https://github.com/jacksitlab",
-                    "title": "My Github",
+                    "id": "101",
+                    "url": "https://git-highstreet-technologies.com/",
+                    "title": "htgit",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "102",
+                    "url": "https://cloud-highstreet-technologies.com/",
+                    "title": "htcloud",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "103",
+                    "url": "https://wiki.cloud-highstreet-technologies.com/",
+                    "title": "dokuwiki",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "104",
+                    "url": "https://gerrit.onap.org/",
+                    "title": "ONAP gerrit",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "105",
+                    "url": "https://wiki.onap.org/",
+                    "title": "ONAP wiki",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "106",
+                    "url": "https://jira.onap.org/",
+                    "title": "ONAP jira",
+                    "icon": "",
+                    "type": "link"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "url": "",
+            "title": "Online-Shops",
+            "icon": "",
+            "type": "folder",
+            "items": [
+                {
+                    "id": "301",
+                    "url": "https://ebay.de",
+                    "title": "ebay",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "302",
+                    "url": "https://amazon.de",
+                    "title": "Amazon",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "303",
+                    "url": "https://www.kathi.de",
+                    "title": "Kathi",
                     "icon": "",
                     "type": "link"
                 }
@@ -31,37 +165,115 @@
         },
         {
             "id": "4",
-            "url": "https://github.com/ascnkde/sadflkndsai",
-            "title": "",
+            "url": "",
+            "title": "Gaming",
             "icon": "",
-            "type": "link"
+            "type": "folder",
+            "items": [
+                {
+                    "id": "401",
+                    "url": "https://steampowered.com",
+                    "title": "Steam",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "402",
+                    "url": "https://www.mmoga.de",
+                    "title": "MMOGA",
+                    "icon": "",
+                    "type": "link"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "url": "",
+            "title": "network",
+            "icon": "",
+            "type": "folder",
+            "items": [
+                {
+                    "id": "201",
+                    "url": "http://10.20.0.1",
+                    "title": "fritzbox",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "202",
+                    "url": "http://10.10.0.200",
+                    "title": "NAS",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "203",
+                    "url": "http://10.20.0.3",
+                    "title": "TP-Link01",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "204",
+                    "url": "http://10.10.0.1",
+                    "title": "Banana Pi",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "205",
+                    "url": "http://jarvis.local:12101/",
+                    "title": "jarvis",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "206",
+                    "url": "http://jarvis.local:1880/#flow/abcdbb59.b53848",
+                    "title": "jarvis node-red",
+                    "icon": "",
+                    "type": "link"
+                },
+                {
+                    "id": "207",
+                    "url": "http://10.20.0.254/",
+                    "title": "pihole",
+                    "icon": "",
+                    "type": "link"
+                }
+            ]
         },
         {
             "id": "5",
-            "url": "https://github.com",
-            "title": "github",
+            "url": "",
+            "title": "youtube channels",
             "icon": "",
-            "type": "link"
-        },
-        {
-            "id": "6",
-            "url": "https://github.com",
-            "title": "github",
-            "icon": "",
-            "type": "link"
-        },
-        {
-            "id": "7",
-            "url": "https://github.com",
-            "title": "github",
-            "icon": "",
-            "type": "link"
-        },{
-            "id": "003",
-            "url": "https://golem.de",
-            "title": "golem",
-            "icon": "",
-            "type": "hiddenlink"
+            "type": "folder",
+            "items": [
+                {
+                    "id": "501",
+                    "url": "https://www.youtube.com/user/tagesschau/videos",
+                    "title": "Tagesschau",
+                    "icon": "",
+                    "type": "hiddenlink"
+                },
+                {
+                    "id": "502",
+                    "url": "https://www.youtube.com/c/EureVideosFahrn%C3%BCnftig/videos",
+                    "title": "Sascha Fahrnünftig - Eure Videos",
+                    "icon": "",
+                    "type": "hiddenlink"
+                },
+                {
+                    "id": "503",
+                    "url": "https://www.youtube.com/c/AlexiBexi/videos",
+                    "title": "Alexibexi Videos",
+                    "icon": "",
+                    "type": "hiddenlink"
+                }
+                
+            ]
         }
     ]
 }

@@ -99,7 +99,8 @@ class SpeedDialItem {
         let item: SpeedDialItem | null = null;
         if (search.length == 0) {
             if (id == "0") {
-                return items.filter(e => e.type != "hiddenlink");
+                return items.filter(e => ((e.type == "folder") && e.items.filter(e=>e.type!="hiddenlink").length>0) || e.type=="link");
+                //return items.filter(e => e.type=="folder" && e.items.find(e=>e.type!="hiddenlink"));
             }
             for (let i = 0; i < items.length; i++) {
                 item = items[i].find(id);
