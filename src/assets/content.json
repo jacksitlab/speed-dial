@@ -55,6 +55,12 @@
             "title": "github",
             "icon": "",
             "type": "link"
+        },{
+            "id": "003",
+            "url": "https://golem.de",
+            "title": "golem",
+            "icon": "",
+            "type": "hiddenlink"
         }
     ]
 }

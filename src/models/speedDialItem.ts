@@ -3,7 +3,7 @@ export interface ISpeedDialItem {
     url?: string;
     title?: string;
     icon?: string;
-    type: "folder" | "link" ;
+    type: "folder" | "link" | "hiddenlink";
     items?: ISpeedDialItem[];
 }
 
@@ -13,7 +13,7 @@ class SpeedDialItem {
     public readonly url: string;
     public readonly title: string;
     public readonly icon: string;
-    public readonly type: "folder" | "link" ;
+    public readonly type: "folder" | "link" | "hiddenlink";
     public readonly items: SpeedDialItem[];
     public constructor(root: ISpeedDialItem) {
         this.id = root.id;
@@ -90,10 +90,11 @@ class SpeedDialItem {
         if (items == null) {
             return null;
         }
+        const showHidden = search.length>0;
         let item: SpeedDialItem | null = null;
         if (search.length == 0) {
             if (id == "0") {
-                return items;
+                return items.filter(e=>e.type!="hiddenlink");
             }
             for (let i = 0; i < items.length; i++) {
                 item = items[i].find(id);
@@ -101,7 +102,7 @@ class SpeedDialItem {
                     break;
                 }
             }
-            return item ? item.items : null;
+            return item ? item.items.filter(e=>e.type!="hiddenlink") : null;
         }
         else {
             let ritems: SpeedDialItem[] = [];
