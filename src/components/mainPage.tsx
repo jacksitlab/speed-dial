@@ -18,7 +18,7 @@ export interface IMainPageState {
 class MainPage extends React.Component<any, IMainPageState> {
 
     private readonly items: SpeedDialItem[];
-    private updated:boolean;
+    private updated: boolean;
     public constructor(props: any) {
         super(props);
         this.updated = false;
@@ -61,7 +61,7 @@ class MainPage extends React.Component<any, IMainPageState> {
         console.log("search for " + searchString);
         this.setState({ search: searchString, filteredItems: SpeedDialItem.find(this.state.items, this.props.match.params.id, searchString) });
     }
-    public static openUrl(url:string){
+    public static openUrl(url: string) {
         console.log(`open url ${url}`)
         if (itemStore.doOpenInNewTab()) {
             const w = window ? window.open(url, '_blank') : null;
@@ -79,12 +79,16 @@ class MainPage extends React.Component<any, IMainPageState> {
             MainPage.openUrl(items[0].url);
         }
         else {
-            if(this.state.search.startsWith("g ")){
+            if (this.state.search.startsWith("g ")) {
                 MainPage.openUrl(`https://www.google.com/search?q=${encodeURI(this.state.search.substring(2))}`);
-            } else if(this.state.search.startsWith("d ")){
-                MainPage.openUrl(`https://duckduckgo.com/search?q=${encodeURI(this.state.search.substring(2)).replace("%20","+")}&t=vivaldi&ia=web`);
+            } else if (this.state.search.startsWith("d ")) {
+                MainPage.openUrl(`https://duckduckgo.com/search?q=${encodeURI(this.state.search.substring(2)).replace("%20", "+")}`);
+            } else if (this.state.search.startsWith("y ")) {
+                MainPage.openUrl(`https://www.youtube.com/results?search_query=${encodeURI(this.state.search.substring(2)).replace("%20", "+")}`);
+            } else if (this.state.search.startsWith("w ")) {
+                MainPage.openUrl(`https://en.wikipedia.org/wiki/Special:Search?ns0=1&search=${encodeURI(this.state.search.substring(2))}`);
             }
-            else if (/[a-z]+\.[a-z]{2,3}/.exec(this.state.search)){
+            else if (/[a-z]+\.[a-z]{2,3}/.exec(this.state.search)) {
                 MainPage.openUrl(`https://${this.state.search}`);
             }
         }
@@ -93,7 +97,7 @@ class MainPage extends React.Component<any, IMainPageState> {
 
         console.log(`render with search ${this.state.search} and id ${this.props.match.params.id}`)
         let items = this.state.filteredItems;
-        if(this.updated){
+        if (this.updated) {
             items = SpeedDialItem.find(this.state.items, this.props.match.params.id, this.state.search);
             this.updated = false;
         }
