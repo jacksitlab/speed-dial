@@ -20,7 +20,8 @@ export const formEncode2 = (params: any) => Object.keys(params).map((key) => {
 }).join('&');
 
 export async function requestRest<TData>(path: string = '', init: RequestInit = {}): Promise<ResponseData<TData>> {
-    const uri = (baseUri) + ('/' + path).replace(/\/{2,}/i, '/');
+
+    const uri = path.startsWith("http") ? path : (baseUri) + ('/' + path).replace(/\/{2,}/i, '/');
     init.headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

@@ -4,6 +4,11 @@
         "background": "#1A5FCF",
         "showForkRibbon": true
     },
+    "searchOptions":{
+        "title":true,
+        "url":false,
+        "tags":true
+    },
     "openInNewTab": true,
     "data": [
         {

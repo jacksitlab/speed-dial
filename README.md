@@ -33,8 +33,17 @@ docker run -d -v $(pwd)/content.json:/usr/share/nginx/html/content.json jacksitl
 
 ```
 {
-    "title":"",
-    "background":"",
+    "title": "testpage",
+    "style": {
+        "background": "#1A5FCF",
+        "showForkRibbon": true
+    },
+    "searchOptions":{
+        "title":true,
+        "url":false,
+        "tags":true
+    },
+    "openInNewTab": true,
     "data":[]
 }
 ```
@@ -42,7 +51,11 @@ docker run -d -v $(pwd)/content.json:/usr/share/nginx/html/content.json jacksitl
 |  | |
 | ----- | ------------------------------------------------- |
 | title |  any string added to header and title of the page |
-| backgroun | css color or background-image value, e.g. #1A5FCD or url(https://mysite.com/myimage.png) |
+| style.background | css color or background-image value, e.g. #1A5FCD or url(https://mysite.com/myimage.png) |
+| style.showForkRibbon | set to false to hide the forkmeongithub-ribbon |
+| searchOptions.title | include title of data entry to search |
+| searchOptions.url | include url of data entry to search |
+| searchOptions.tags | include tags of data entry to search |
 | data | see below DataObject |
 
 DataObject:
@@ -63,7 +76,9 @@ or
     "url": "https://github.com",
     "title": "github",
     "icon": "",
-    "type": "link"
+    "type": "link",
+    "tags":["git","code","repository"]
+ 
 }
 ```
 
@@ -75,4 +90,5 @@ or
 | type | "folder" or "link" |
 | items | if type is "folder" an array of subitems |
 | url | link to website to go to |
+| tags | list of tags for the entry |
 

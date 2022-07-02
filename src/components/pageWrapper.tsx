@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { NavLink } from 'react-router-dom';
 import itemStore from 'stores/itemStore';
+import ToggleButton from 'components/toggleButton'
 interface PageWrapperProps {
     onSearch?(onSearch: string): void;
     onEnter?(): void;
+    onShowHideToggleButtonChanged?(show:boolean):void;
 }
 interface PageWrapperState {
     subtitle: string;
@@ -57,13 +59,15 @@ class PageWrapper extends React.Component<PageWrapperProps, PageWrapperState> {
             }
         }
     }
+    
     render() {
         return (
             <div className="container">
                 <nav className="navbar" style={this.state.headerBackground ? { background: this.state.headerBackground } : {}}>
                     {this.state.headerLogo ? <img src={this.state.headerLogo} className="logo" /> : ""}
                     <NavLink onClick={() => { this.onSearch(""); }} className="navbar-brand" style={{}} to="/"><b>Speed</b>Dial</NavLink>
-                    <span className="navbar-brand" style={{ marginLeft: '30px' }}>{this.state.subtitle}</span>
+                    <span className="navbar-brand" style={{ marginLeft: '30px', marginRight:'30px' }}>{this.state.subtitle}</span>
+                    <ToggleButton tooltip='show hidden items' onCheckChanged={checked=>{this.props.onShowHideToggleButtonChanged && this.props.onShowHideToggleButtonChanged(checked)}}/>
                     <div className="navbar-search">
                         <input id="tbx_search" autoFocus={true} type="text" placeholder="Search"
                             value={this.state.searchValue}

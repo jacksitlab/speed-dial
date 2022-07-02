@@ -90,16 +90,16 @@ class SpeedDialItem {
         }
         return results;
     }
-    public static find(items: SpeedDialItem[] | null, id: string, search = ""): SpeedDialItem[] | null {
+    public static find(items: SpeedDialItem[] | null, id: string, search = "", showHidden=false): SpeedDialItem[] | null {
         console.log(`try to find item for id ${id} or search ${search}`)
         if (items == null) {
             return null;
         }
-        const showHidden = search.length > 0;
         let item: SpeedDialItem | null = null;
+        // no search filter
         if (search.length == 0) {
             if (id == "0") {
-                return items.filter(e => ((e.type == "folder") && e.items.filter(e=>e.type!="hiddenlink").length>0) || e.type=="link");
+                return showHidden ? items: items.filter(e => ((e.type == "folder") && e.items.filter(e=>e.type!="hiddenlink").length>0) || e.type=="link");
                 //return items.filter(e => e.type=="folder" && e.items.find(e=>e.type!="hiddenlink"));
             }
             for (let i = 0; i < items.length; i++) {
@@ -108,7 +108,7 @@ class SpeedDialItem {
                     break;
                 }
             }
-            return item ? item.items.filter(e => e.type != "hiddenlink") : null;
+            return item ? showHidden? item.items : item.items.filter(e => e.type != "hiddenlink") : null;
         }
         else {
             let ritems: SpeedDialItem[] = [];

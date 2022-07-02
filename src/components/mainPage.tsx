@@ -13,6 +13,7 @@ export interface IMainPageState {
     items: SpeedDialItem[] | null;
     filteredItems: SpeedDialItem[] | null;
     search: string;
+    showHidden: boolean;
 }
 
 class MainPage extends React.Component<any, IMainPageState> {
@@ -23,7 +24,7 @@ class MainPage extends React.Component<any, IMainPageState> {
         super(props);
         this.updated = false;
         let data = itemStore.getData();
-        this.state = { items: data, filteredItems: SpeedDialItem.find(data, this.props.match.params.id, ""), search: "" };
+        this.state = { items: data, filteredItems: SpeedDialItem.find(data, this.props.match.params.id, ""), search: "" , showHidden: false};
         this.onDataLoaded = this.onDataLoaded.bind(this);
         itemStore.on("change", this.onDataLoaded);
     }
@@ -59,7 +60,12 @@ class MainPage extends React.Component<any, IMainPageState> {
     }
     private onSearch(searchString: string) {
         console.log("search for " + searchString);
-        this.setState({ search: searchString, filteredItems: SpeedDialItem.find(this.state.items, this.props.match.params.id, searchString) });
+        this.setState({ search: searchString, filteredItems: SpeedDialItem.find(this.state.items, this.props.match.params.id, searchString, this.state.showHidden) });
+    }
+    private onShowHideToggleButtonChanged(show:boolean){
+        console.log(`show hidden items: ${show}`);
+        this.setState({ showHidden:show, filteredItems: SpeedDialItem.find(this.state.items, this.props.match.params.id, this.state.search, show) });
+        
     }
     public static openUrl(url: string) {
         console.log(`open url ${url}`)
@@ -93,17 +99,22 @@ class MainPage extends React.Component<any, IMainPageState> {
             }
         }
     }
+   
     render() {
 
         console.log(`render with search ${this.state.search} and id ${this.props.match.params.id}`)
         let items = this.state.filteredItems;
         if (this.updated) {
-            items = SpeedDialItem.find(this.state.items, this.props.match.params.id, this.state.search);
+            items = SpeedDialItem.find(this.state.items, this.props.match.params.id, this.state.search, this.state.showHidden);
             this.updated = false;
         }
         const openInNewTab = itemStore.doOpenInNewTab();
         if (items) {
-            return <PageWrapper onSearch={(searchString: string) => { this.onSearch(searchString); }} onEnter={() => { this.onEnterPressed() }}>
+            return <PageWrapper 
+                onSearch={(searchString: string) => { this.onSearch(searchString); }} 
+                onEnter={() => { this.onEnterPressed() }}
+                onShowHideToggleButtonChanged={(show)=>{this.onShowHideToggleButtonChanged(show)}}
+                >
                 <div className="speed-dial-container">
                     {items.map((item) => {
                         return <SpeedDialItemView key={`item_${item.id}`} item={item}
