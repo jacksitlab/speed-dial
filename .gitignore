@@ -106,3 +106,9 @@ dist/
 package-lock.json
 .vscode/
 *.png
+chrome-ext/*
+!chrome-ext/background.js
+!chrome-ext/manifest.json
+!chrome-ext/options.html
+!chrome-ext/options.js
+

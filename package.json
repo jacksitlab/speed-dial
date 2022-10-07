@@ -1,6 +1,6 @@
 {
     "name": "speed-dial",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "main": "index.js",
     "license": "APACHE 2.0",
     "scripts": {
