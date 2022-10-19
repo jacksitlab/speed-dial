@@ -25,9 +25,27 @@ docker build -t jacksitlab/speed-dial:latest .
 
 ## Use docker image
 
+plain docker
 ```
 docker run -d -v $(pwd)/content.json:/usr/share/nginx/html/content.json jacksitlab/speed-dial:latest
 ```
+
+docker-compose
+
+```
+version: '3'
+
+services: 
+  server:
+    restart: always
+    image: jacksitlab/speed-dial
+    volumes: 
+      - ./config.json:/usr/share/nginx/html/content.json
+    ports:
+      - 9090:80
+```
+
+
 
 ## content.json
 
@@ -56,7 +74,8 @@ docker run -d -v $(pwd)/content.json:/usr/share/nginx/html/content.json jacksitl
 | searchOptions.title | include title of data entry to search |
 | searchOptions.url | include url of data entry to search |
 | searchOptions.tags | include tags of data entry to search |
-| data | see below DataObject |
+| openInNewTab | always open link in new tab |
+| data | Array of DataObject |
 
 DataObject:
 
